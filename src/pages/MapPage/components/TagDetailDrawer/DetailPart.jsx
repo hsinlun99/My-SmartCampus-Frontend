@@ -155,7 +155,7 @@ const DetailPart = (props) => {
               }}
               variant='contained'
             >
-              更改狀態
+              更新回報
             </Button>
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
               <Box
