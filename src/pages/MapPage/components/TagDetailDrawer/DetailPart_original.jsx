@@ -67,7 +67,6 @@ const DetailPart = (props) => {
     upVote(tagDetail.id, !hasUpVote)
     setHasUpVote((prevHasUpVote) => !prevHasUpVote)
   }
-  console.log(tagDetail, activeTag)
 
   return (
     <>
@@ -85,7 +84,6 @@ const DetailPart = (props) => {
               flexDirection: 'row'
             }}
           >
-            {/* 回報圖片 */}
             {tagDetail.imageUrl.length === 0 ? (
               <div
                 style={{
@@ -132,82 +130,11 @@ const DetailPart = (props) => {
               })
             )}
           </div>
-          
-          <div
-            style={{
-              width: '90%',
-              borderTop: 'solid 0.5px lightgray',
-              borderBottom:
-                activeTag.category.missionName === missionName[1] &&
-                'solid 0.5px lightgray',
-              paddingBottom: '2'
-            }}
-          >
-            <Box>
-              {"地點:"+ tagDetail.locationName}
-              {"樓層:"+tagDetail.floor}
-              {"狀態:"+tagDetail.status.statusName}
-              {"回報項目:"+activeTag.category.targetName}
-            </Box>
-            {tagDetail.status.description ? (
-              <Box
-                my={2}
-                textOverflow='ellipsis'
-                component='div'
-                overflow='hidden'
-                height='4.5em'
-              >
-                {tagDetail.status.description}
-              </Box>
-            ) : (
-              <p>無描述</p>
-            )}
-
-              <Box display='flex' flexDirection='column' alignItems='flex-end'>
-                {/* <Box
-                  className={classes.clickableFont}
-                  m={0.5}
-                  width='85px'
-                  display='flex'
-                  alignItems='center'
-                  justifyContent='space-between'
-                  onClick={() => setOpenHistory(true)}
-                >
-                  <img src={EditIcon} alt='' />
-                  狀態編輯紀錄
-                </Box> */}
-                <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                  <Box
-                    display='inline'
-                    className={classes.clickableFont}
-                    style={{ fontSize: '1em' }}
-                    onClick={() => userDialogControl.setOpen(true)}
-                    mr={1}
-                  >
-                    {
-                      tagDetail?.statusHistory?.statusList?.[0]?.createUser
-                        ?.displayName
-                    }
-                  </Box>
-                  編輯於{' '}
-                  {moment(
-                    tagDetail?.statusHistory?.statusList?.[0]?.createTime
-                  ).format('YYYY-MM-DD h:mm')}
-                </Box>
-              </Box>
-            {/* 此回報首次建立時間 */}
-            {/* <Box display='flex' justifyContent='flex-end'>
-              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                {tagDetail?.newCreateTime} 
-              </Box>
-            </Box> */}
-          </div>
-
-          <Box // 第二行詳細資訊
+          <Box
             display='flex'
             alignItems='center'
             flexDirection='row'
-            justifyContent='center'
+            justifyContent='space-between'
             m={2}
             width='90%'
           >
@@ -231,7 +158,7 @@ const DetailPart = (props) => {
               更新回報
             </Button>
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
-              {/* <Box
+              <Box
                 className={classes.clickableFont}
                 m={0.5}
                 width='85px'
@@ -242,13 +169,57 @@ const DetailPart = (props) => {
               >
                 <img src={EditIcon} alt='' />
                 狀態編輯紀錄
-              </Box> */}
+              </Box>
+              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
+                <Box
+                  display='inline'
+                  className={classes.clickableFont}
+                  style={{ fontSize: '1em' }}
+                  onClick={() => userDialogControl.setOpen(true)}
+                  mr={1}
+                >
+                  {
+                    tagDetail?.statusHistory?.statusList?.[0]?.createUser
+                      ?.displayName
+                  }
+                </Box>
+                編輯於{' '}
+                {moment(
+                  tagDetail?.statusHistory?.statusList?.[0]?.createTime
+                ).format('YYYY-MM-DD h:mm')}
+              </Box>
             </Box>
-          </Box> 
-          {/* end of 第二行詳細資訊 */}
-
-          {/* 若有人投票已解決的話，則顯示第三行 */}
-          {/* {tagDetail.status.statusName === '已解決' && (
+          </Box>
+          <div
+            style={{
+              width: '90%',
+              borderTop: 'solid 0.5px lightgray',
+              borderBottom:
+                activeTag.category.missionName === missionName[1] &&
+                'solid 0.5px lightgray',
+              paddingBottom: '2'
+            }}
+          >
+            {tagDetail.status.description ? (
+              <Box
+                my={2}
+                textOverflow='ellipsis'
+                component='div'
+                overflow='hidden'
+                height='4.5em'
+              >
+                {tagDetail.status.description}
+              </Box>
+            ) : (
+              <p>無描述</p>
+            )}
+            <Box display='flex' justifyContent='flex-end'>
+              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
+                {tagDetail?.newCreateTime}
+              </Box>
+            </Box>
+          </div>
+          {tagDetail.status.statusName === '已解決' && (
             <Box
               display='flex'
               justifyContent='flex-end'
@@ -292,7 +263,7 @@ const DetailPart = (props) => {
                 +1
               </IconButton>
             </Box>
-          )} */}
+          )}
           <UserDialog
             userId={tagDetail?.statusHistory?.statusList?.[0]?.createUser?.uid}
             control={userDialogControl}
