@@ -70,7 +70,7 @@ function TagDetailDialog(props) {
   }, [fetchTagDetail])
   return (
     <>
-      <Dialog
+      {/* <Dialog
         open={deleteDialog}
         PaperProps={{
           style: {
@@ -107,7 +107,7 @@ function TagDetailDialog(props) {
             確定
           </CustomButton>
         </Box>
-      </Dialog>
+      </Dialog> */}
       <CustomDrawer
         open={activeTag && !isInMission}
         handleClose={onClose}
@@ -118,24 +118,24 @@ function TagDetailDialog(props) {
             ? activeTag.category.subTypeName
             : activeTag.category.targetName || '詳細資訊'
         }
-        titleActions={
-          checkTagOwner()
-            ? [
-                {
-                  name: '刪除',
-                  handleOnClick: () => {
-                    setDeleteDialog(true)
-                  },
-                  disabled: !tagDetail
-                },
-                {
-                  name: '編輯',
-                  handleOnClick: () => handleStartEdit(activeTag),
-                  disable: !tagDetail
-                }
-              ]
-            : []
-        }
+        // titleActions={
+        //   checkTagOwner()
+        //     ? [
+        //         {
+        //           name: '刪除',
+        //           handleOnClick: () => {
+        //             setDeleteDialog(true)
+        //           },
+        //           disabled: !tagDetail
+        //         },
+        //         {
+        //           name: '編輯',
+        //           handleOnClick: () => handleStartEdit(activeTag),
+        //           disable: !tagDetail
+        //         }
+        //       ]
+        //     : []
+        // }
         {...rest}
       >
         <Box
@@ -152,7 +152,7 @@ function TagDetailDialog(props) {
               justifyContent='space-between'
               width='100%'
             >
-              <Box
+              {/* <Box
                 display='flex'
                 alignItems='center'
                 justifyContent='space-around'
@@ -181,8 +181,8 @@ function TagDetailDialog(props) {
                     )}
                   </>
                 )}
-              </Box>
-              <div
+              </Box> */}
+              {/* <div
                 style={{
                   cursor: 'default',
                   width: '100px',
@@ -196,7 +196,7 @@ function TagDetailDialog(props) {
                 <Typography style={{ position: 'relative', top: '-10px' }}>
                   {status.statusName}
                 </Typography>
-              </div>
+              </div> */}
             </Box>
           )}
           <DetailPart

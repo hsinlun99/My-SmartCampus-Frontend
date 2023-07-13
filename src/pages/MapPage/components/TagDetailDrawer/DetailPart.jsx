@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Box, Button, CircularProgress, IconButton } from '@mui/material'
+import { Box, Grid, Paper, Button, CircularProgress, IconButton, Link } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import moment from 'moment'
 import { useSnackbar } from 'notistack'
@@ -11,6 +11,7 @@ import { useUpdateVote } from '../../../../utils/Mutation/useVoteTag'
 import { useUserValue } from '../../../../utils/contexts/UserContext'
 import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
+import { CenterFocusStrong } from '@mui/icons-material'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {
@@ -18,6 +19,17 @@ const useStyles = makeStyles(() => ({
     color: 'gray',
     cursor: 'pointer',
     textDecoration: 'underline'
+  },
+  paperDetail: {
+    variant: 'outlined',
+    background: '#D9D9D9',
+    textAlign: 'center',
+    width: '100%'
+  },
+  relativeMap: {
+    color: '#777777',
+    fontSize: 5,
+    textAlign: 'center',
   }
 }))
 
@@ -143,39 +155,51 @@ const DetailPart = (props) => {
               paddingBottom: '2'
             }}
           >
-            <Box>
-              {"地點:"+ tagDetail.locationName}
-              {"樓層:"+tagDetail.floor}
-              {"狀態:"+tagDetail.status.statusName}
-              {"回報項目:"+activeTag.category.targetName}
-            </Box>
-            {tagDetail.status.description ? (
-              <Box
-                my={2}
-                textOverflow='ellipsis'
-                component='div'
-                overflow='hidden'
-                height='4.5em'
-              >
-                {tagDetail.status.description}
-              </Box>
-            ) : (
-              <p>無描述</p>
-            )}
+            {/* 地點、樓層 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={1}>
+                <img src="../src/assets/images/research1-location.svg" alt="" />
+              </Grid>
+              <Grid container item xs={4} marginRight={1}>
+                <Paper className={classes.paperDetail} >
+                  {"地點:"+ tagDetail.locationName}
+                </Paper>
+              </Grid>
+              <Grid container item xs={1.5} >
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.floor+"樓"}
+                </Paper>
+              </Grid>
+            </Grid>
+
+            {/* 回報項目 與 相對地圖 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={1}>
+                <img src="../src/assets/images/research1-reportItem.svg" alt="" />
+              </Grid>
+              <Grid container item xs={4} marginRight={1}>
+                <Paper className={classes.paperDetail}>
+                  {"回報項目:"+activeTag.category.targetName}
+                </Paper>
+              </Grid>
+              <Grid container item xs={4} >
+                <Link className={classes.relativeMap} href='#'>
+                  相對位置圖
+                  <img src="../src/assets/images/research1-relativeMap.svg"/>
+                </Link>
+              </Grid>
+            </Grid>
+
+            {/* 狀態 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={4} >
+                <Paper className={classes.paperDetail}>
+                  {"狀態:"+tagDetail.status.statusName}
+                </Paper>                
+              </Grid>
+            </Grid>
 
               <Box display='flex' flexDirection='column' alignItems='flex-end'>
-                {/* <Box
-                  className={classes.clickableFont}
-                  m={0.5}
-                  width='85px'
-                  display='flex'
-                  alignItems='center'
-                  justifyContent='space-between'
-                  onClick={() => setOpenHistory(true)}
-                >
-                  <img src={EditIcon} alt='' />
-                  狀態編輯紀錄
-                </Box> */}
                 <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
                   <Box
                     display='inline'
