@@ -222,6 +222,13 @@ const DetailPart = (props) => {
                   ).format('YYYY-MM-DD h:mm')}
                 </Box>
               </Box>
+
+            {/* 此回報首次建立時間 */}
+            {/* <Box display='flex' justifyContent='flex-end'>
+              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
+                {tagDetail?.newCreateTime} 
+              </Box>
+            </Box> */}
           </div>
 
           <Box 
