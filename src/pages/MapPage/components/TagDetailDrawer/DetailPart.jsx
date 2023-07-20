@@ -12,6 +12,7 @@ import { useUserValue } from '../../../../utils/contexts/UserContext'
 import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
+import researchReportType from '../../../../constants/researchReportType'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {
@@ -198,7 +199,7 @@ const DetailPart = (props) => {
                 </Paper>                
               </Grid>
             </Grid>
-
+              {/* 此回報上次編輯時間 */}
               <Box display='flex' flexDirection='column' alignItems='flex-end'>
                 <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
                   <Box
@@ -219,6 +220,7 @@ const DetailPart = (props) => {
                   ).format('YYYY-MM-DD h:mm')}
                 </Box>
               </Box>
+
             {/* 此回報首次建立時間 */}
             {/* <Box display='flex' justifyContent='flex-end'>
               <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
@@ -227,7 +229,7 @@ const DetailPart = (props) => {
             </Box> */}
           </div>
 
-          <Box // 第二行詳細資訊
+          <Box 
             display='flex'
             alignItems='center'
             flexDirection='row'
