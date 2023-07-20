@@ -12,7 +12,8 @@ import { useUserValue } from '../../../../utils/contexts/UserContext'
 import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
-import researchReportType from '../../../../constants/researchReportType'
+import researchReportType from '../../../../constants/researchStatusType'
+// import RelativeMapIcon from '../../../../assets/images/research1-relativeMap.svg'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {

@@ -10,7 +10,8 @@ import {
   DialogActions,
   Dialog,
   CircularProgress,
-  TextField
+  TextField,
+  FormGroup
 } from '@mui/material'
 import PropTypes from 'prop-types'
 import CustomDrawer from '../../../../components/CustomDrawer'
@@ -72,9 +73,21 @@ function ChangeStatus(props) {
         open={stateDrawer}
         handleClose={handleDrawerClose}
         closeButton
-        title='選擇目前狀態'
+        title='更新回報資訊'
       >
         <Box
+          component="form"
+        >
+          <Box>
+            
+            <TextField
+
+            />
+          </Box>
+
+
+        </Box>
+        {/* <Box
           display='flex'
           width='100%'
           flexDirection='column'
@@ -84,7 +97,6 @@ function ChangeStatus(props) {
             {status.map((item, index) => (
               <Fragment key={item.statusName}>
                 <ListItem
-                  button
                   onClick={() => setTemporaryTagState(item.statusName)}
                 >
                   <ListItemIcon>
@@ -110,7 +122,7 @@ function ChangeStatus(props) {
                 {item.statusName === temporaryTagState && (
                   <TextField
                     multiline
-                    minRows={2}
+                    minRows={3}
                     variant='outlined'
                     placeholder={tagDetail.status.description}
                     onChange={handleChangeDescription}
@@ -130,7 +142,7 @@ function ChangeStatus(props) {
               確定
             </Button>
           </DialogActions>
-        </Box>
+        </Box> */}
       </CustomDrawer>
       <Dialog
         open={loading}
