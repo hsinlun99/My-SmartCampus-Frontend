@@ -8,6 +8,14 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+// 上線前記得註解！！！！
+// import { worker } from './mocks/browser'
+// worker.start()
+// if (process.env.NODE_ENV === 'development') {
+//   const { worker } = require('./mocks/browser.js')
+//   worker.start()
+// }
+
 Sentry.init({
   dsn:
     (import.meta.env.NODE_ENV === 'production' &&
