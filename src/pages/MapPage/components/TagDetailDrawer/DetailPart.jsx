@@ -13,7 +13,7 @@ import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
 import researchReportType from '../../../../constants/researchStatusType'
-// import RelativeMapIcon from '../../../../assets/images/research1-relativeMap.svg'
+import RelativeMapIcon from '../../../../assets/images/research1-relativeMap.svg'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {
@@ -81,8 +81,7 @@ const DetailPart = (props) => {
     upVote(tagDetail.id, !hasUpVote)
     setHasUpVote((prevHasUpVote) => !prevHasUpVote)
   }
-  console.log(tagDetail, activeTag)
-
+  
   return (
     <>
       {tagDetail.id ? (
@@ -187,7 +186,7 @@ const DetailPart = (props) => {
               <Grid container item xs={4} >
                 <Link className={classes.relativeMap} href='#'>
                   相對位置圖
-                  <img src="../src/assets/images/research1-relativeMap.svg"/>
+                  <img src={RelativeMapIcon}/>
                 </Link>
               </Grid>
             </Grid>
