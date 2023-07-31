@@ -13,7 +13,9 @@ import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
 import researchReportType from '../../../../constants/researchStatusType'
-import RelativeMapIcon from '../../../../assets/images/research1-relativeMap.svg'
+import RelativeMapIcon from '../../../../assets/images/research1-detailRelativeMap.svg'
+import LocationIcon from '../../../../assets/images/research1-detailLocation.svg'
+import ReportItem from '../../../../assets/images/research1-detailReportItem.svg'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {
@@ -159,7 +161,7 @@ const DetailPart = (props) => {
             {/* 地點、樓層 */}
             <Grid container marginTop={0.5}>
               <Grid container item xs={1}>
-                <img src="../src/assets/images/research1-location.svg" alt="" />
+                <img src={LocationIcon} alt="" />
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail} >
@@ -176,7 +178,7 @@ const DetailPart = (props) => {
             {/* 回報項目 與 相對地圖 */}
             <Grid container marginTop={0.5}>
               <Grid container item xs={1}>
-                <img src="../src/assets/images/research1-reportItem.svg" alt="" />
+                <img src={ReportItem} alt="" />
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail}>
