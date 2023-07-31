@@ -20,18 +20,17 @@ import {
 import PropTypes from 'prop-types'
 import CustomDrawer from '../../../../components/CustomDrawer'
 import { makeStyles } from '@mui/styles'
-import ResearchFormDrawer from '../../../../components/CustomDrawer/ResearchFormDrawer'
 import { useUpdateTagStatus } from '../../../../utils/Mutation/updateTagStatus'
 import { useTagValue } from '../../../../utils/contexts/TagContext'
 import { useUserValue } from '../../../../utils/contexts/UserContext'
 
-import locationEditIcon from '../../../../assets/images/research1-locationEditIcon.svg'
-import itemTypeEditIcon from '../../../../assets/images/research1-itemTypeIcon.svg'
-import itemEditIcon from '../../../../assets/images/research1-itemIcon.svg'
-import itemDescriptionEditIcon from '../../../../assets/images/research1-itemDescriptionIcon.svg'
-import statusEditIcon from '../../../../assets/images/research1-statusEditIcon.svg'
-import statusDescriptionIcon from '../../../../assets/images/research1-statusDescriptionIcon.svg'
-import addPhotoIcon from '../../../../assets/images/research1-addPhotoIcon.svg'
+import locationEditIcon from '../../../../assets/images/research1-editLocationEditIcon.svg'
+import itemTypeEditIcon from '../../../../assets/images/research1-editItemTypeIcon.svg'
+import itemEditIcon from '../../../../assets/images/research1-editItemIcon.svg'
+import itemDescriptionEditIcon from '../../../../assets/images/research1-editItemDescriptionIcon.svg'
+import statusEditIcon from '../../../../assets/images/research1-editStatusEditIcon.svg'
+import statusDescriptionIcon from '../../../../assets/images/research1-editStatusDescriptionIcon.svg'
+import addPhotoIcon from '../../../../assets/images/research1-editAddPhotoIcon.svg'
 
 const useStyles = makeStyles(() => ({
   paperDetail: {
