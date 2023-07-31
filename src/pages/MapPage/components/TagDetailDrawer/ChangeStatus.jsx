@@ -96,77 +96,6 @@ function ChangeStatus(props) {
   console.log(tagDetail)
   return (
     <>
-    {/* <ResearchFormDrawer
-      open={stateDrawer}
-      handleClose={handleDrawerClose}
-      closeButton
-      title='更新回報資訊'
-    >
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={locationEditIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            回報地點
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={itemTypeEditIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            回報類別
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={itemEditIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            回報項目
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={itemDescriptionEditIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            項目描述
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={statusEditIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            回報狀態
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={statusDescriptionIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            狀態描述
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item xs={1} ml={1}>
-            <img src={addPhotoIcon}  />
-          </Grid>
-          <Grid item xs={3}>
-            新增照片
-          </Grid>
-        </Grid>
-    </ResearchFormDrawer> */}
-        
-
       <CustomDrawer
         open={stateDrawer}
         handleClose={handleDrawerClose}
@@ -255,50 +184,6 @@ function ChangeStatus(props) {
 
           </Grid>
           
-          {/* <List component='nav'>
-            {status.map((item, index) => (
-              <Fragment key={item.statusName}>
-                <ListItem
-                  onClick={() => setTemporaryTagState(item.statusName)}
-                >
-                  <ListItemIcon>
-                    <img
-                      src={
-                        item.statusName === temporaryTagState
-                          ? item.statusOnIcon
-                          : item.statusIcon
-                      }
-                      alt=''
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.statusName}
-                    style={{
-                      color:
-                        item.statusName === temporaryTagState
-                          ? item.statusColor
-                          : `black`
-                    }}
-                  />
-                </ListItem>
-                {item.statusName === temporaryTagState && (
-                  <TextField
-                    multiline
-                    minRows={3}
-                    variant='outlined'
-                    placeholder={tagDetail.status.description}
-                    onChange={handleChangeDescription}
-                    style={{
-                      width: '90%',
-                      marginLeft: '5%',
-                      marginBottom: '20px'
-                    }}
-                  />
-                )}
-                {index !== status.length - 1 && <Divider variant='middle' />}
-              </Fragment>
-            ))}
-          </List> */}
           <DialogActions>
             <Button color='primary' onClick={() => handleDrawerComplete()}>
               確定
