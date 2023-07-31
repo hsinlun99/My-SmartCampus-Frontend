@@ -222,13 +222,6 @@ const DetailPart = (props) => {
                   ).format('YYYY-MM-DD h:mm')}
                 </Box>
               </Box>
-
-            {/* 此回報首次建立時間 */}
-            {/* <Box display='flex' justifyContent='flex-end'>
-              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                {tagDetail?.newCreateTime} 
-              </Box>
-            </Box> */}
           </div>
 
           <Box 
@@ -258,69 +251,9 @@ const DetailPart = (props) => {
             >
               更新回報
             </Button>
-            <Box display='flex' flexDirection='column' alignItems='flex-end'>
-              {/* <Box
-                className={classes.clickableFont}
-                m={0.5}
-                width='85px'
-                display='flex'
-                alignItems='center'
-                justifyContent='space-between'
-                onClick={() => setOpenHistory(true)}
-              >
-                <img src={EditIcon} alt='' />
-                狀態編輯紀錄
-              </Box> */}
-            </Box>
           </Box> 
           {/* end of 第二行詳細資訊 */}
-
-          {/* 若有人投票已解決的話，則顯示第三行 */}
-          {/* {tagDetail.status.statusName === '已解決' && (
-            <Box
-              display='flex'
-              justifyContent='flex-end'
-              alignItems='center'
-              width='90%'
-              m={2}
-            >
-              <div
-                style={{
-                  width: '40%',
-                  height: '6px',
-                  marginRight: '30px',
-                  border: 'solid 0.5px',
-                  borderColor: 'lightgray'
-                }}
-              >
-                <div
-                  style={{
-                    width: `${(numberOfVote / threshold) * 100}%`,
-                    height: '100%',
-                    backgroundColor: '#FDCC4F'
-                  }}
-                />
-              </div>
-              <Box className={classes.clickableFont} m={0.5}>
-                {numberOfVote || 0}
-                人贊同此問題已解決
-                <br />再{numberOfVote ? threshold - numberOfVote : threshold}
-                人即可刪除此回報
-              </Box>
-              <IconButton
-                variant='contained'
-                style={{
-                  marginLeft: '8px',
-                  background: hasUpVote ? '#FDCC4F' : '#EEEEEE',
-                  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
-                  fontSize: '15px'
-                }}
-                onClick={handleUopVote}
-              >
-                +1
-              </IconButton>
-            </Box>
-          )} */}
+          
           <UserDialog
             userId={tagDetail?.statusHistory?.statusList?.[0]?.createUser?.uid}
             control={userDialogControl}
