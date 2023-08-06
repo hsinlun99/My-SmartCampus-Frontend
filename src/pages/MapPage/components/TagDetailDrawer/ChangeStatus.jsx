@@ -102,6 +102,18 @@ function ChangeStatus(props) {
         title='更新回報資訊'
       >
         <Box
+          component="form"
+        >
+          <Box>
+            
+            <TextField
+
+            />
+          </Box>
+
+
+        </Box>
+        {/* <Box
           display='flex'
           width='100%'
           flexDirection='column'
@@ -183,12 +195,56 @@ function ChangeStatus(props) {
 
           </Grid>
           
+          <List component='nav'>
+            {status.map((item, index) => (
+              <Fragment key={item.statusName}>
+                <ListItem
+                  onClick={() => setTemporaryTagState(item.statusName)}
+                >
+                  <ListItemIcon>
+                    <img
+                      src={
+                        item.statusName === temporaryTagState
+                          ? item.statusOnIcon
+                          : item.statusIcon
+                      }
+                      alt=''
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.statusName}
+                    style={{
+                      color:
+                        item.statusName === temporaryTagState
+                          ? item.statusColor
+                          : `black`
+                    }}
+                  />
+                </ListItem>
+                {item.statusName === temporaryTagState && (
+                  <TextField
+                    multiline
+                    minRows={3}
+                    variant='outlined'
+                    placeholder={tagDetail.status.description}
+                    onChange={handleChangeDescription}
+                    style={{
+                      width: '90%',
+                      marginLeft: '5%',
+                      marginBottom: '20px'
+                    }}
+                  />
+                )}
+                {index !== status.length - 1 && <Divider variant='middle' />}
+              </Fragment>
+            ))}
+          </List>
           <DialogActions>
             <Button color='primary' onClick={() => handleDrawerComplete()}>
               確定
             </Button>
           </DialogActions>
-        </Box>
+        </Box> */}
       </CustomDrawer>
       <Dialog
         open={loading}
