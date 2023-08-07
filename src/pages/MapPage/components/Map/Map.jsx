@@ -166,7 +166,7 @@ function Map(props) {
               elementType: 'labels.icon',
               stylers: [
                 {
-                  visibility: 'off'
+                  visibility: 'on'
                 }
               ]
             },
