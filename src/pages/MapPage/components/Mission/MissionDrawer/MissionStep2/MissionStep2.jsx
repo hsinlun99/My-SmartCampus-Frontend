@@ -97,19 +97,19 @@ function MissionStep2() {
                 })()
               }}
             >
-              <option value={0}>無</option>
-              <option value={-1}>B1</option>
-              <option value={-2}>B2</option>
-              <option value={1}>1樓</option>
-              <option value={2}>2樓</option>
-              <option value={3}>3樓</option>
-              <option value={4}>4樓</option>
-              <option value={5}>5樓</option>
-              <option value={6}>6樓</option>
-              <option value={7}>7樓</option>
-              <option value={8}>8樓</option>
-              <option value={9}>9樓</option>
-              <option value={10}>10樓</option>
+              <option value={"0"}>無</option>
+              <option value={"-1"}>B1</option>
+              <option value={"-2"}>B2</option>
+              <option value={"1"}>1樓</option>
+              <option value={"2"}>2樓</option>
+              <option value={"3"}>3樓</option>
+              <option value={"4"}>4樓</option>
+              <option value={"5"}>5樓</option>
+              <option value={"6"}>6樓</option>
+              <option value={"7"}>7樓</option>
+              <option value={"8"}>8樓</option>
+              <option value={"9"}>9樓</option>
+              <option value={"10"}>10樓</option>
             </NativeSelect>
           </Box>
         </Grid>

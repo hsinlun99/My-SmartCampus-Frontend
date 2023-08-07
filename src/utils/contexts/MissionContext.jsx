@@ -178,7 +178,7 @@ export const MissionContextProvider = ({ children }) => {
   const handleChangeTextLocation = useCallback((event) => {
     setTextLocation(event.target.value)
   }, [])
-  const [floor, setFloor] = useState(0)
+  const [floor, setFloor] = useState("")
 
   // ===================== Loading =======================
   const [loading, setLoading] = useState(false)
@@ -288,7 +288,7 @@ export const MissionContextProvider = ({ children }) => {
         longitude: markerPosition.longitude.toString()
       },
       imageUploadNumber: imageFiles.length,
-      floor: Number(floor),
+      floor: floor,
       statusName: '清潔狀態',
       statusDescName: '乾淨'
     }
