@@ -144,9 +144,9 @@ const DetailPart = (props) => {
             style={{
               width: '90%',
               borderTop: 'solid 0.5px lightgray',
-              borderBottom:
-                activeTag.category.missionName === missionName[1] &&
-                'solid 0.5px lightgray',
+              // borderBottom:
+              //   activeTag.category.missionName === missionName[1] &&
+              //   'solid 0.5px lightgray',
               paddingBottom: '2'
             }}
           >
@@ -157,7 +157,7 @@ const DetailPart = (props) => {
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail} >
-                  {"地點:"+ tagDetail.locationName}
+                  {"地點: tagDetail 沒有"}
                 </Paper>
               </Grid>
               <Grid container item xs={1.5} >
@@ -174,7 +174,7 @@ const DetailPart = (props) => {
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail}>
-                  {"回報項目:"+activeTag.category.targetName}
+                  {"回報項目:"+tagDetail.category.categoryDescName}
                 </Paper>
               </Grid>
               <Grid container item xs={4} >
@@ -252,40 +252,7 @@ const DetailPart = (props) => {
             </Button>
           </Box> 
           {/* end of 第二行詳細資訊 */}
-          
-            <Box display='flex' flexDirection='column' alignItems='flex-end'>
-              <Box
-                className={classes.clickableFont}
-                m={0.5}
-                width='85px'
-                display='flex'
-                alignItems='center'
-                justifyContent='space-between'
-                onClick={() => setOpenHistory(true)}
-              >
-                <img src={EditIcon} alt='' />
-                狀態編輯紀錄
-              </Box>
-              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                <Box
-                  display='inline'
-                  className={classes.clickableFont}
-                  style={{ fontSize: '1em' }}
-                  onClick={() => userDialogControl.setOpen(true)}
-                  mr={1}
-                >
-                  {
-                    tagDetail?.statusHistory?.statusList?.[0]?.createUser
-                      ?.displayName
-                  }
-                </Box>
-                編輯於{' '}
-                {moment(
-                  tagDetail?.statusHistory?.statusList?.[0]?.createTime
-                ).format('YYYY-MM-DD h:mm')}
-              </Box>
-            </Box>
-          </Box>
+        
           <div
             style={{
               width: '90%',
@@ -293,74 +260,8 @@ const DetailPart = (props) => {
               paddingBottom: '2'
             }}
           >
-            {tagDetail.status.description ? (
-              <Box
-                my={2}
-                textOverflow='ellipsis'
-                component='div'
-                overflow='hidden'
-                height='4.5em'
-              >
-                {tagDetail.status.description}
-              </Box>
-            ) : (
-              <p>無描述</p>
-            )}
-            <Box display='flex' justifyContent='flex-end'>
-              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                {tagDetail?.newCreateTime}
-              </Box>
-            </Box>
+
           </div>
-          {tagDetail.status.statusName === '已解決' && (
-            <Box
-              display='flex'
-              justifyContent='flex-end'
-              alignItems='center'
-              width='90%'
-              m={2}
-            >
-              <div
-                style={{
-                  width: '40%',
-                  height: '6px',
-                  marginRight: '30px',
-                  border: 'solid 0.5px',
-                  borderColor: 'lightgray'
-                }}
-              >
-                <div
-                  style={{
-                    width: `${(numberOfVote / threshold) * 100}%`,
-                    height: '100%',
-                    backgroundColor: '#FDCC4F'
-                  }}
-                />
-              </div>
-              <Box className={classes.clickableFont} m={0.5}>
-                {numberOfVote || 0}
-                人贊同此問題已解決
-                <br />再{numberOfVote ? threshold - numberOfVote : threshold}
-                人即可刪除此回報
-              </Box>
-              <IconButton
-                variant='contained'
-                style={{
-                  marginLeft: '8px',
-                  background: hasUpVote ? '#FDCC4F' : '#EEEEEE',
-                  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
-                  fontSize: '15px'
-                }}
-                onClick={handleUopVote}
-              >
-                +1
-              </IconButton>
-            </Box>
-          )}
-          <UserDialog
-            userId={tagDetail?.statusHistory?.statusList?.[0]?.createUser?.uid}
-            control={userDialogControl}
-          />
         </>
       // end of "if tagDetail.id is not a null"
       ) : (
@@ -377,7 +278,7 @@ const DetailPart = (props) => {
         <EditHistory
           open={openHistory}
           handleHistoryClose={handleHistoryClose}
-          tagMissionIndex={undefined}
+          // tagMissionIndex={undefined}
           tagDetail={tagDetail}
         />
       )}
