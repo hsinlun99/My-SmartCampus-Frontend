@@ -10,16 +10,41 @@ import {
   DialogActions,
   Dialog,
   CircularProgress,
-  TextField
+  TextField,
+  FormGroup,
+  Grid,
+  Input,
+  Drawer,
+  Paper
 } from '@mui/material'
 import PropTypes from 'prop-types'
 import CustomDrawer from '../../../../components/CustomDrawer'
+import { makeStyles } from '@mui/styles'
 import { useUpdateTagStatus } from '../../../../utils/Mutation/updateTagStatus'
 import { useTagValue } from '../../../../utils/contexts/TagContext'
 import { useUserValue } from '../../../../utils/contexts/UserContext'
 
+import locationEditIcon from '../../../../assets/images/research1-editLocationEditIcon.svg'
+import itemTypeEditIcon from '../../../../assets/images/research1-editItemTypeIcon.svg'
+import itemEditIcon from '../../../../assets/images/research1-editItemIcon.svg'
+import itemDescriptionEditIcon from '../../../../assets/images/research1-editItemDescriptionIcon.svg'
+import statusEditIcon from '../../../../assets/images/research1-editStatusEditIcon.svg'
+import statusDescriptionIcon from '../../../../assets/images/research1-editStatusDescriptionIcon.svg'
+import addPhotoIcon from '../../../../assets/images/research1-editAddPhotoIcon.svg'
+
+const useStyles = makeStyles(() => ({
+  paperDetail: {
+    variant: 'outlined',
+    background: '#D9D9D9',
+    textAlign: 'center',
+    width: '100%'
+  },
+}))
+
+
 function ChangeStatus(props) {
   const { stateDrawer, tagDetail, setStateDrawer, status } = props
+  const classes = useStyles()
   const [temporaryTagState, setTemporaryTagState] = useState(
     tagDetail.status.statusName
   )
@@ -66,25 +91,114 @@ function ChangeStatus(props) {
       }
     }
   }
+
+  console.log(tagDetail)
   return (
     <>
       <CustomDrawer
         open={stateDrawer}
         handleClose={handleDrawerClose}
         closeButton
-        title='選擇目前狀態'
+        title='更新回報資訊'
       >
         <Box
+          component="form"
+        >
+          <Box>
+            
+            <TextField
+
+            />
+          </Box>
+
+
+        </Box>
+        {/* <Box
           display='flex'
           width='100%'
           flexDirection='column'
           justifyContent='space-around'
         >
+          <Grid container padding={2}>
+            <Grid container>
+              <Grid item xs={1} ml={1}>
+                <img src={locationEditIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                回報地點
+              </Grid>
+              <Grid item xs={2} mr={1}>
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.locationName}
+                </Paper>
+              </Grid>
+              <Grid item xs={1.5}>
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.floor+"樓"}
+                </Paper>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={itemTypeEditIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                回報類別
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={itemEditIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                回報項目
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={itemDescriptionEditIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                項目描述
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={statusEditIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                回報狀態
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={statusDescriptionIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                狀態描述
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid item xs={1} ml={1}>
+                <img src={addPhotoIcon}  />
+              </Grid>
+              <Grid item xs={3}>
+                新增照片
+              </Grid>
+            </Grid>
+
+          </Grid>
+          
           <List component='nav'>
             {status.map((item, index) => (
               <Fragment key={item.statusName}>
                 <ListItem
-                  button
                   onClick={() => setTemporaryTagState(item.statusName)}
                 >
                   <ListItemIcon>
@@ -110,7 +224,7 @@ function ChangeStatus(props) {
                 {item.statusName === temporaryTagState && (
                   <TextField
                     multiline
-                    minRows={2}
+                    minRows={3}
                     variant='outlined'
                     placeholder={tagDetail.status.description}
                     onChange={handleChangeDescription}
@@ -130,7 +244,7 @@ function ChangeStatus(props) {
               確定
             </Button>
           </DialogActions>
-        </Box>
+        </Box> */}
       </CustomDrawer>
       <Dialog
         open={loading}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Box, Button, CircularProgress, IconButton } from '@mui/material'
+import { Box, Grid, Paper, Button, CircularProgress, IconButton, Link } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import moment from 'moment'
 import { useSnackbar } from 'notistack'
@@ -11,6 +11,11 @@ import { useUpdateVote } from '../../../../utils/Mutation/useVoteTag'
 import { useUserValue } from '../../../../utils/contexts/UserContext'
 import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
+import { CenterFocusStrong } from '@mui/icons-material'
+import researchReportType from '../../../../constants/researchStatusType'
+import RelativeMapIcon from '../../../../assets/images/research1-detailRelativeMap.svg'
+import LocationIcon from '../../../../assets/images/research1-detailLocation.svg'
+import ReportItem from '../../../../assets/images/research1-detailReportItem.svg'
 
 const useStyles = makeStyles(() => ({
   clickableFont: {
@@ -18,6 +23,17 @@ const useStyles = makeStyles(() => ({
     color: 'gray',
     cursor: 'pointer',
     textDecoration: 'underline'
+  },
+  paperDetail: {
+    variant: 'outlined',
+    background: '#D9D9D9',
+    textAlign: 'center',
+    width: '100%'
+  },
+  relativeMap: {
+    color: '#777777',
+    fontSize: 5,
+    textAlign: 'center',
   }
 }))
 
@@ -59,7 +75,7 @@ const DetailPart = (props) => {
     upVote(tagDetail.id, !hasUpVote)
     setHasUpVote((prevHasUpVote) => !prevHasUpVote)
   }
-
+  
   return (
     <>
       {tagDetail.id ? (
@@ -76,6 +92,7 @@ const DetailPart = (props) => {
               flexDirection: 'row'
             }}
           >
+            {/* 回報圖片 */}
             {tagDetail.imageUrl.length === 0 ? (
               <div
                 style={{
@@ -122,11 +139,95 @@ const DetailPart = (props) => {
               })
             )}
           </div>
-          <Box
+          
+          <div
+            style={{
+              width: '90%',
+              borderTop: 'solid 0.5px lightgray',
+              borderBottom:
+                activeTag.category.missionName === missionName[1] &&
+                'solid 0.5px lightgray',
+              paddingBottom: '2'
+            }}
+          >
+            {/* 地點、樓層 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={1}>
+                <img src={LocationIcon} alt="" />
+              </Grid>
+              <Grid container item xs={4} marginRight={1}>
+                <Paper className={classes.paperDetail} >
+                  {"地點:"+ tagDetail.locationName}
+                </Paper>
+              </Grid>
+              <Grid container item xs={1.5} >
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.floor+"樓"}
+                </Paper>
+              </Grid>
+            </Grid>
+
+            {/* 回報項目 與 相對地圖 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={1}>
+                <img src={ReportItem} alt="" />
+              </Grid>
+              <Grid container item xs={4} marginRight={1}>
+                <Paper className={classes.paperDetail}>
+                  {"回報項目:"+activeTag.category.targetName}
+                </Paper>
+              </Grid>
+              <Grid container item xs={4} >
+                <Link className={classes.relativeMap} href='#'>
+                  相對位置圖
+                  <img src={RelativeMapIcon}/>
+                </Link>
+              </Grid>
+            </Grid>
+
+            {/* 狀態 */}
+            <Grid container marginTop={0.5}>
+              <Grid container item xs={4} >
+                <Paper className={classes.paperDetail}>
+                  {"狀態:"+tagDetail.status.statusName}
+                </Paper>                
+              </Grid>
+            </Grid>
+              {/* 此回報上次編輯時間 */}
+              <Box display='flex' flexDirection='column' alignItems='flex-end'>
+                <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
+                  <Box
+                    display='inline'
+                    className={classes.clickableFont}
+                    style={{ fontSize: '1em' }}
+                    onClick={() => userDialogControl.setOpen(true)}
+                    mr={1}
+                  >
+                    {
+                      tagDetail?.statusHistory?.statusList?.[0]?.createUser
+                        ?.displayName
+                    }
+                  </Box>
+                  編輯於{' '}
+                  {moment(
+                    tagDetail?.statusHistory?.statusList?.[0]?.createTime
+                  ).format('YYYY-MM-DD h:mm')}
+                </Box>
+              </Box>
+
+            {/* 此回報首次建立時間 */}
+            {/* <Box display='flex' justifyContent='flex-end'>
+              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
+                {tagDetail?.newCreateTime} 
+              </Box>
+            </Box> */}
+          </div>
+
+          <Box 
             display='flex'
             alignItems='center'
             flexDirection='row'
-            justifyContent='space-between'
+            justifyContent='center'
             m={2}
             width='90%'
           >
@@ -147,8 +248,11 @@ const DetailPart = (props) => {
               }}
               variant='contained'
             >
-              更改狀態
+              更新回報
             </Button>
+          </Box> 
+          {/* end of 第二行詳細資訊 */}
+          
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
               <Box
                 className={classes.clickableFont}
@@ -258,6 +362,7 @@ const DetailPart = (props) => {
             control={userDialogControl}
           />
         </>
+      // end of "if tagDetail.id is not a null"
       ) : (
         <Box
           height='100%'
