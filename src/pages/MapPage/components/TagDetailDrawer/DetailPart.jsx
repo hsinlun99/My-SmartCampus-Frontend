@@ -177,12 +177,6 @@ const DetailPart = (props) => {
                   {"回報項目:"+tagDetail.category.categoryDescName}
                 </Paper>
               </Grid>
-              <Grid container item xs={4} >
-                <Link className={classes.relativeMap} href='#'>
-                  相對位置圖
-                  <img src={RelativeMapIcon}/>
-                </Link>
-              </Grid>
             </Grid>
 
             {/* 狀態 */}
@@ -204,8 +198,7 @@ const DetailPart = (props) => {
                     mr={1}
                   >
                     {
-                      tagDetail?.statusHistory?.statusList?.[0]?.createUser
-                        ?.displayName
+                      tagDetail?.createUser?.displayName
                     }
                   </Box>
                   編輯於{' '}
@@ -214,13 +207,6 @@ const DetailPart = (props) => {
                   ).format('YYYY-MM-DD h:mm')}
                 </Box>
               </Box>
-
-            {/* 此回報首次建立時間 */}
-            {/* <Box display='flex' justifyContent='flex-end'>
-              <Box m={0.5} style={{ fontSize: '0.8em', color: 'gray' }}>
-                {tagDetail?.newCreateTime} 
-              </Box>
-            </Box> */}
           </div>
 
           <Box 
@@ -252,16 +238,11 @@ const DetailPart = (props) => {
             </Button>
           </Box> 
           {/* end of 第二行詳細資訊 */}
-        
-          <div
-            style={{
-              width: '90%',
-              borderTop: 'solid 0.5px lightgray',
-              paddingBottom: '2'
-            }}
-          >
-
-          </div>
+      
+          <UserDialog
+            userId={tagDetail?.createUser?.uid}
+            control={userDialogControl}
+          />
         </>
       // end of "if tagDetail.id is not a null"
       ) : (
