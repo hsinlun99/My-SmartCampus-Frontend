@@ -36,75 +36,18 @@ function TagDetailDialog(props) {
   useEffect(() => {
     fetchTagDetail()
   }, [fetchTagDetail])
+
+  console.log("activeTag: ", activeTag)
   return (
     <>
-      {/* <Dialog
-        open={deleteDialog}
-        PaperProps={{
-          style: {
-            background: '#FAFAFA',
-            boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.12), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)`,
-            borderRadius: `10px`,
-            padding: '10px'
-          }
-        }}
-      >
-        <DialogTitle>確定要刪除?</DialogTitle>
-        <Box
-          width='100%'
-          mb={2}
-          mt={3}
-          display='flex'
-          justifyContent='space-around'
-        >
-          <CustomButton
-            buttonType='finishButton'
-            onClick={() => {
-              setDeleteDialog(false)
-            }}
-          >
-            取消
-          </CustomButton>
-          <CustomButton
-            buttonType='finishButton'
-            onClick={() => {
-              deleteTag(activeTag.id)
-              onClose()
-            }}
-          >
-            確定
-          </CustomButton>
-        </Box>
-      </Dialog> */}
       <CustomDrawer
         open={activeTag && !isInMission}
         handleClose={onClose}
         height='full'
         closeButton={false}
         title={
-          activeTag && tagMissionIndex === 2
-            ? activeTag.category.subTypeName
-            : activeTag.category.targetName || '詳細資訊'
+          tagDetail.category.categoryType+"/"+tagDetail.category.categoryName
         }
-        // titleActions={
-        //   checkTagOwner()
-        //     ? [
-        //         {
-        //           name: '刪除',
-        //           handleOnClick: () => {
-        //             setDeleteDialog(true)
-        //           },
-        //           disabled: !tagDetail
-        //         },
-        //         {
-        //           name: '編輯',
-        //           handleOnClick: () => handleStartEdit(activeTag),
-        //           disable: !tagDetail
-        //         }
-        //       ]
-        //     : []
-        // }
-        {...rest}
       >
         <Box
           display='flex'
@@ -120,40 +63,6 @@ function TagDetailDialog(props) {
               justifyContent='space-between'
               width='100%'
             >
-              {/* <Box
-                display='flex'
-                alignItems='center'
-                justifyContent='space-around'
-                width='70%'
-              >
-                <Typography>{tagDetail.locationName}</Typography>
-                {tagDetail.floor === 0 ? (
-                  ''
-                ) : (
-                  <>
-                    {tagDetail.floor < 0 ? (
-                      <Typography>B{-1 * tagDetail.floor}樓</Typography>
-                    ) : (
-                      <Typography>{tagDetail.floor}樓</Typography>
-                    )}
-                  </>
-                )}
-              </Box> */}
-              {/* <div
-                style={{
-                  cursor: 'default',
-                  width: '100px',
-                  height: '36px',
-                  borderTop: `18px solid ${status.statusColor}`,
-                  borderBottom: `18px solid ${status.statusColor}`,
-                  borderLeft: '12px solid transparent',
-                  textAlign: 'center'
-                }}
-              >
-                <Typography style={{ position: 'relative', top: '-10px' }}>
-                  {status.statusName}
-                </Typography>
-              </div> */}
             </Box>
           )}
           <DetailPart
