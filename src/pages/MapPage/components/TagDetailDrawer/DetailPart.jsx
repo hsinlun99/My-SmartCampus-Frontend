@@ -13,7 +13,6 @@ import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
 import researchReportType from '../../../../constants/researchStatusType'
-import RelativeMapIcon from '../../../../assets/images/research1-detailRelativeMap.svg'
 import LocationIcon from '../../../../assets/images/research1-detailLocation.svg'
 import ReportItem from '../../../../assets/images/research1-detailReportItem.svg'
 
@@ -50,6 +49,20 @@ const DetailPart = (props) => {
   const [hasUpVote, setHasUpVote] = useState(false)
   const { enqueueSnackbar } = useSnackbar()
   const userDialogControl = useModal()
+  const [thisStatusType, setThisStatusType] = useState({})
+
+  useEffect(() => {
+    // console.log("dic 狀態： ", researchReportType[0].status)
+    researchReportType.forEach(function(item, index, array) {
+      if (tagDetail.status.statusName === item.status) {
+        console.log(item)
+        setThisStatusType(item)        
+      }
+    })
+
+  }, [tagDetail])
+
+
   useEffect(() => {
     setNumberOfVote(tagDetail ? tagDetail.status.numberOfUpVote : 0)
     setHasUpVote(tagDetail ? tagDetail.status.hasUpVote : false)
@@ -167,23 +180,26 @@ const DetailPart = (props) => {
               </Grid>
             </Grid>
 
-            {/* 回報項目 與 相對地圖 */}
+            {/* 回報項目 */}
             <Grid container marginTop={0.5}>
               <Grid container item xs={1}>
                 <img src={ReportItem} alt="" />
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail}>
-                  {"回報項目:"+tagDetail.category.categoryDescName}
+                  {tagDetail.category.categoryDescName}
                 </Paper>
               </Grid>
             </Grid>
 
             {/* 狀態 */}
             <Grid container marginTop={0.5}>
+              <Grid container item xs={1}>
+                <img src={thisStatusType.statusIcon} />
+              </Grid>
               <Grid container item xs={4} >
-                <Paper className={classes.paperDetail}>
-                  {"狀態:"+tagDetail.status.statusName}
+                <Paper className={classes.paperDetail} style={{ background: thisStatusType.statusColor }}>
+                  {tagDetail.status.statusName+"："+tagDetail.status.statusDescName}
                 </Paper>                
               </Grid>
             </Grid>
