@@ -9,51 +9,49 @@ import detailStatusUsageIcon from '../assets/images/research1-detailStatusUsage.
 import detailStatusOccupationIcon from '../assets/images/research1-detailStatusOccupation.svg'
 
 export default [
-  [
     {
       status: '維護狀態',
-      satusColor: '#9CD6D6',
+      statusColor: '#9CD6D6',
       statusIcon: detailStatusMaintenanceIcon,
     },
     {
       status: '功能狀態',
-      satusColor: '#A4D6FF',
+      statusColor: '#A4D6FF',
       statusIcon: detailStatusFunctionIcon,
     },
     {
       status: '外觀狀態',
-      satusColor: '#A6B6B6',
+      statusColor: '#A6B6B6',
       statusIcon: detailStatusOutlookIcon,
     },
     {
       status: '佔用狀態',
-      satusColor: '#99B1D4',
+      statusColor: '#99B1D4',
       statusIcon: detailStatusOccupationIcon,
     },
     {
       status: '清潔狀態',
-      satusColor: '#DAAEDB',
+      statusColor: '#DAAEDB',
       statusIcon: detailStatusCleanIcon,
     },
     {
       status: '使用狀態',
-      satusColor: '#FDAFC6',
+      statusColor: '#FDAFC6',
       statusIcon: detailStatusUsageIcon,
     },
     {
       status: '人潮狀態',
-      satusColor: '#FA8888',
+      statusColor: '#FA8888',
       statusIcon: detailStatusCrowdIcon,
     },
     {
       status: '噪音狀態',
-      satusColor: '#D3AAB1',
+      statusColor: '#D3AAB1',
       statusIcon: detailStatusNoiseIcon,
     },
     {
       status: '體感狀態',
-      satusColor: '#FCA6D4',
+      statusColor: '#FCA6D4',
       statusIcon: detailStatusThermalComfortIcon,
     },
-  ]
 ]
