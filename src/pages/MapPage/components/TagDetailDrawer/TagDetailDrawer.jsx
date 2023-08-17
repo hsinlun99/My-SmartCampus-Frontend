@@ -37,7 +37,6 @@ function TagDetailDialog(props) {
     fetchTagDetail()
   }, [fetchTagDetail])
 
-  console.log("activeTag: ", activeTag)
   return (
     <>
       <CustomDrawer

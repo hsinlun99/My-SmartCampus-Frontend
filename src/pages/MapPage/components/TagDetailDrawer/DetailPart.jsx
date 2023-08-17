@@ -12,7 +12,7 @@ import { useUserValue } from '../../../../utils/contexts/UserContext'
 import UserDialog from '../UserDialog/UserDialog'
 import useModal from '../../../../utils/hooks/useModal'
 import { CenterFocusStrong } from '@mui/icons-material'
-import researchReportType from '../../../../constants/researchStatusType'
+import researchStatusType from '../../../../constants/researchStatusType'
 import LocationIcon from '../../../../assets/images/research1-detailLocation.svg'
 import ReportItem from '../../../../assets/images/research1-detailReportItem.svg'
 
@@ -27,12 +27,8 @@ const useStyles = makeStyles(() => ({
     variant: 'outlined',
     background: '#D9D9D9',
     textAlign: 'center',
-    width: '100%'
-  },
-  relativeMap: {
-    color: '#777777',
-    fontSize: 5,
-    textAlign: 'center',
+    width: '100%',
+    boxShadow: 'none'
   }
 }))
 
@@ -52,10 +48,8 @@ const DetailPart = (props) => {
   const [thisStatusType, setThisStatusType] = useState({})
 
   useEffect(() => {
-    // console.log("dic 狀態： ", researchReportType[0].status)
-    researchReportType.forEach(function(item, index, array) {
+    researchStatusType.forEach(function(item, index, array) {
       if (tagDetail.status.statusName === item.status) {
-        console.log(item)
         setThisStatusType(item)        
       }
     })
@@ -170,7 +164,7 @@ const DetailPart = (props) => {
               </Grid>
               <Grid container item xs={4} marginRight={1}>
                 <Paper className={classes.paperDetail} >
-                  {"地點: tagDetail 沒有"}
+                  {tagDetail.locationName}
                 </Paper>
               </Grid>
               <Grid container item xs={1.5} >

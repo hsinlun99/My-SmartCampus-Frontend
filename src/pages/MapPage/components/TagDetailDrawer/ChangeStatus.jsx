@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import {
   Box,
   Button,
@@ -15,15 +15,20 @@ import {
   Grid,
   Input,
   Drawer,
-  Paper
+  Paper,
+  FormControl,
+  Select,
+  MenuItem
 } from '@mui/material'
 import PropTypes from 'prop-types'
 import CustomDrawer from '../../../../components/CustomDrawer'
 import { makeStyles } from '@mui/styles'
-import { useUpdateTagStatus } from '../../../../utils/Mutation/updateTagStatus'
+// import { useUpdateTagStatus } from '../../../../utils/Mutation/updateTagStatus'
+import { useUpdateTagStatus } from '../../../../utils/Mutation/updateTagStatusResearch'
 import { useTagValue } from '../../../../utils/contexts/TagContext'
 import { useUserValue } from '../../../../utils/contexts/UserContext'
 
+import researchStatusType from '../../../../constants/researchStatusType'
 import locationEditIcon from '../../../../assets/images/research1-editLocationEditIcon.svg'
 import itemTypeEditIcon from '../../../../assets/images/research1-editItemTypeIcon.svg'
 import itemEditIcon from '../../../../assets/images/research1-editItemIcon.svg'
@@ -37,7 +42,8 @@ const useStyles = makeStyles(() => ({
     variant: 'outlined',
     background: '#D9D9D9',
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
+    boxShadow: 'none'
   },
 }))
 
@@ -57,6 +63,12 @@ function ChangeStatus(props) {
   const [newDescription, setNewDescription] = useState(
     tagDetail.status.description
   )
+  const [thisStatusType, setThisStatusType] = useState({})
+  const [selectStatusDesc, setSelecStatusDesc] = useState(tagDetail.status.statusDescName)
+  const handleSelectChange = (event) => {
+    setSelecStatusDesc(event.target.value);
+  };
+
   const handleChangeDescription = (event) => {
     setNewDescription(event.target.value)
   }
@@ -77,8 +89,17 @@ function ChangeStatus(props) {
           },
           variables: {
             tagId: tagDetail.id,
-            statusName: temporaryTagState,
-            description: newDescription
+            data: {
+              locationName: tagDetail.locationName,
+              category: {
+                categoryType: tagDetail.category.categoryType,
+                categoryName: tagDetail.category.categoryName,
+                categoryDescName: tagDetail.category.categoryDescName,
+                locationImgUrl: tagDetail.category.locationImgUrl
+              },
+              statusName: tagDetail.status.statusName,
+              statusDescName: selectStatusDesc
+            }
           }
         })
         await fetchTagDetail()
@@ -92,7 +113,15 @@ function ChangeStatus(props) {
     }
   }
 
-  console.log(tagDetail)
+  useEffect(() => {
+    researchStatusType.forEach(function(item, index, array) {
+      if (tagDetail.status.statusName === item.status) {
+        setThisStatusType(item)
+      }
+    })
+  }, [tagDetail])
+
+
   return (
     <>
       <CustomDrawer
@@ -102,18 +131,6 @@ function ChangeStatus(props) {
         title='更新回報資訊'
       >
         <Box
-          component="form"
-        >
-          <Box>
-            
-            <TextField
-
-            />
-          </Box>
-
-
-        </Box>
-        {/* <Box
           display='flex'
           width='100%'
           flexDirection='column'
@@ -146,6 +163,11 @@ function ChangeStatus(props) {
               <Grid item xs={3}>
                 回報類別
               </Grid>
+              <Grid item xs={2}>
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.category.categoryType}
+                </Paper>
+              </Grid>
             </Grid>
 
             <Grid container spacing={2}>
@@ -154,6 +176,11 @@ function ChangeStatus(props) {
               </Grid>
               <Grid item xs={3}>
                 回報項目
+              </Grid>
+              <Grid item xs={2}>
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.category.categoryName}
+                </Paper>
               </Grid>
             </Grid>
 
@@ -164,6 +191,11 @@ function ChangeStatus(props) {
               <Grid item xs={3}>
                 項目描述
               </Grid>
+              <Grid item xs={2}>
+                <Paper className={classes.paperDetail}>
+                  {tagDetail.category.categoryDescName}
+                </Paper>
+              </Grid>
             </Grid>
 
             <Grid container spacing={2}>
@@ -173,6 +205,11 @@ function ChangeStatus(props) {
               <Grid item xs={3}>
                 回報狀態
               </Grid>
+              <Grid item xs={3}>
+                <Paper className={classes.paperDetail} style={{ background: thisStatusType.statusColor }} >
+                  {tagDetail.status.statusName}
+                </Paper>
+              </Grid>
             </Grid>
 
             <Grid container spacing={2}>
@@ -181,6 +218,21 @@ function ChangeStatus(props) {
               </Grid>
               <Grid item xs={3}>
                 狀態描述
+              </Grid>
+              <Grid item xs={3}>
+                <Paper className={classes.paperDetail} style={{background: '#FDCC4F'}}>
+                  <FormControl fullWidth>
+                    <Select
+                      defaultValue={tagDetail.status.statusDescName}
+                      value={selectStatusDesc}
+                      onChange={handleSelectChange}
+                    >
+                      <MenuItem value={'乾淨'}>乾淨</MenuItem>
+                      <MenuItem value={'普通'}>普通</MenuItem>
+                      <MenuItem value={'髒亂'}>髒亂</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Paper>
               </Grid>
             </Grid>
 
@@ -194,57 +246,13 @@ function ChangeStatus(props) {
             </Grid>
 
           </Grid>
-          
-          <List component='nav'>
-            {status.map((item, index) => (
-              <Fragment key={item.statusName}>
-                <ListItem
-                  onClick={() => setTemporaryTagState(item.statusName)}
-                >
-                  <ListItemIcon>
-                    <img
-                      src={
-                        item.statusName === temporaryTagState
-                          ? item.statusOnIcon
-                          : item.statusIcon
-                      }
-                      alt=''
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.statusName}
-                    style={{
-                      color:
-                        item.statusName === temporaryTagState
-                          ? item.statusColor
-                          : `black`
-                    }}
-                  />
-                </ListItem>
-                {item.statusName === temporaryTagState && (
-                  <TextField
-                    multiline
-                    minRows={3}
-                    variant='outlined'
-                    placeholder={tagDetail.status.description}
-                    onChange={handleChangeDescription}
-                    style={{
-                      width: '90%',
-                      marginLeft: '5%',
-                      marginBottom: '20px'
-                    }}
-                  />
-                )}
-                {index !== status.length - 1 && <Divider variant='middle' />}
-              </Fragment>
-            ))}
-          </List>
+
           <DialogActions>
-            <Button color='primary' onClick={() => handleDrawerComplete()}>
+            <Button color='primary' onClick={handleDrawerComplete}>
               確定
             </Button>
           </DialogActions>
-        </Box> */}
+        </Box>
       </CustomDrawer>
       <Dialog
         open={loading}

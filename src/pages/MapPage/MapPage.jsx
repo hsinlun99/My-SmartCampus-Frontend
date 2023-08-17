@@ -150,7 +150,7 @@ const MapPageContent = (props) => {
           />
           <Fade in={showControl}>
             <div>
-              <SearchBar
+              {/* <SearchBar
                 menuControls={{
                   handleOpenUser: userDialogControl.setOpen,
                   handleOpenHistory: ReportHistoryControl.setOpen,
@@ -165,8 +165,8 @@ const MapPageContent = (props) => {
                 search={search}
                 setSearch={setSearch}
                 setPlaceName={setPlaceName}
-              />
-              <FilterFab />
+              /> */}
+              {/* <FilterFab /> */}
               <LocationFab
                 setMapCenter={() => {
                   if (!positionError)
